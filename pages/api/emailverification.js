@@ -16,10 +16,10 @@ async function sendEmail(req, res) {
   // Run cors
   await cors(req, res);
 
-  let { email } = req.body;
+  let { email, sender, link } = req.body;
   //Email client details about service request.
 
-  const serviceMessage = `Please click on the link below to verify your email. Verification sent on: ${new Date().toDateString()}.`;
+  const serviceMessage = `Please visit this link (${link}) to verify your email. Verification sent on: ${new Date().toDateString()}.`;
 
   const message = `
     Email: ${email}
@@ -30,7 +30,7 @@ async function sendEmail(req, res) {
     // console.log("REQ.BODY", req.body);
     await sendgrid.send({
       to: email, // Your email where you'll receive emails
-      from: "test@magezi.tech", // your website email address here
+      from: sender, // your website email address here
       subject: "Email Verification",
       text: message,
       html: message.replace(/\r\n/g, "<br>"),

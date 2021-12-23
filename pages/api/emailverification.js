@@ -19,7 +19,7 @@ async function sendEmail(req, res) {
   let { email } = req.body;
   //Email client details about service request.
 
-  const serviceMessage = `Verify now. We sent you this on: ${new Date().toDateString()}.`;
+  const serviceMessage = `Please click on the link below to verify your email. Verification sent on: ${new Date().toDateString()}.`;
 
   const message = `
     Email: ${email}
